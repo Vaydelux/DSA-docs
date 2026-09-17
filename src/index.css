@@ -4,6 +4,11 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
+  /* Layout tokens */
+  --header-height: 60px;
+  --sidebar-width: 280px;
+  --content-max-width: 896px; /* max-w-4xl */
+  
   /* Default theme colors (will be overridden by ThemeContext) */
   --color-surface: #0f172a;
   --color-surface-light: #1e293b;
@@ -164,4 +169,137 @@ body {
 @media (max-width: 768px) {
   body, html { overflow-x: hidden; }
   pre, code { max-width: 100%; overflow-x: auto; }
+}
+
+/* ============================================
+   LAYOUT SYSTEM
+   ============================================ */
+
+/* Prevent horizontal scroll on body */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Main layout container */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Sidebar - fixed on mobile, sticky on desktop */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  height: 100dvh;
+  z-index: 40;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Mobile overlay */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+}
+
+/* Content wrapper */
+.content-wrapper {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Desktop layout (lg breakpoint and above) */
+@media (min-width: 1024px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    transform: translateX(0);
+    flex-shrink: 0;
+  }
+  
+  .sidebar-overlay {
+    display: none;
+  }
+  
+  .content-wrapper {
+    padding: 2rem 3rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content-wrapper {
+    padding: 2rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .content-wrapper {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Scroll margin for anchor links */
+.doc-content [id] {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+/* Print styles */
+@media print {
+  .sidebar,
+  .sidebar-overlay,
+  .app-header {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin: 0 !important;
+  }
+  
+  .content-wrapper {
+    max-width: 100%;
+    padding: 0;
+  }
 }

@@ -40,20 +40,13 @@ const navItems = [
 
 export default function Sidebar({ currentPage, onNavigate, isOpen, onClose }: SidebarProps) {
   return (
-    <>
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/60 z-40 lg:hidden" onClick={onClose} />
-      )}
-      <aside
-        className={`fixed top-0 left-0 h-screen h-[100dvh] w-[280px] sm:w-72 z-50
-                    transform transition-transform duration-300 ease-in-out flex flex-col
-                    lg:sticky lg:top-0 lg:h-screen lg:translate-x-0 lg:z-10
-                    ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
-        style={{
-          backgroundColor: 'var(--color-surface-dark)',
-          borderRightColor: 'var(--color-border)',
-        }}
-      >
+    <aside
+      className={`sidebar ${isOpen ? 'open' : ''}`}
+      style={{
+        backgroundColor: 'var(--color-surface-dark)',
+        borderRight: `1px solid var(--color-border)`,
+      }}
+    >
         <div
           className="flex-shrink-0 px-6 py-5 border-b"
           style={{
@@ -71,7 +64,7 @@ export default function Sidebar({ currentPage, onNavigate, isOpen, onClose }: Si
             </div>
           </div>
         </div>
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-6">
+        <nav className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6">
           {navItems.map((section) => (
             <div key={section.category} className="mb-6">
               <h3 className="text-[11px] font-semibold uppercase tracking-wider px-3 mb-2" style={{ color: 'var(--color-text-dim)' }}>
@@ -124,7 +117,6 @@ export default function Sidebar({ currentPage, onNavigate, isOpen, onClose }: Si
           <p className="text-xs" style={{ color: 'var(--color-text-dim)' }}>Built with React + TypeScript</p>
           <p className="text-xs mt-1" style={{ color: 'var(--color-text-dim)' }}>Code First • Explain After</p>
         </div>
-      </aside>
-    </>
+    </aside>
   );
 }
