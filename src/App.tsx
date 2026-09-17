@@ -52,14 +52,14 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="flex min-h-screen min-h-[100dvh] overflow-x-hidden" style={{ backgroundColor: 'var(--color-surface)' }}>
+      <div className="min-h-screen min-h-[100dvh] overflow-x-hidden" style={{ backgroundColor: 'var(--color-surface)' }}>
         <Sidebar
           currentPage={currentPage}
           onNavigate={navigate}
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
         />
-        <main className="flex-1 min-w-0 flex flex-col overflow-y-auto">
+        <main className="lg:ml-[280px] min-h-screen flex flex-col">
           <header className="sticky top-0 z-30 backdrop-blur-md border-b" style={{ backgroundColor: 'color-mix(in srgb, var(--color-surface) 90%, transparent)', borderBottomColor: 'var(--color-border)' }}>
             <div className="flex items-center justify-between px-4 md:px-8 py-3">
               <div className="flex items-center gap-3">
