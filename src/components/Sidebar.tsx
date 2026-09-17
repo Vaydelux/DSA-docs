@@ -72,7 +72,7 @@ export default function Sidebar({ currentPage, onNavigate, isOpen, onClose }: Si
             </div>
           </div>
         </div>
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-6">
+        <nav className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6">
           {navItems.map((section) => (
             <div key={section.category} className="mb-6">
               <h3 className="text-[11px] font-semibold uppercase tracking-wider px-3 mb-2" style={{ color: 'var(--color-text-dim)' }}>
