@@ -2,17 +2,30 @@ export default function Placeholder({ title, description }: { title: string; des
   return (
     <div className="doc-content animate-fade-in">
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium mb-3">
+        <div 
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium mb-3"
+          style={{
+            backgroundColor: 'color-mix(in srgb, var(--color-primary) 10%, transparent)',
+            borderColor: 'color-mix(in srgb, var(--color-primary) 20%, transparent)',
+            color: 'var(--color-primary)',
+          }}
+        >
           Coming Soon
         </div>
-        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">{title}</h1>
-        <p className="text-[#94a3b8] max-w-2xl">{description}</p>
+        <h1 className="text-3xl md:text-4xl font-extrabold mb-3" style={{ color: 'var(--color-text)' }}>{title}</h1>
+        <p className="max-w-2xl" style={{ color: 'var(--color-text-muted)' }}>{description}</p>
       </div>
 
-      <div className="p-6 rounded-xl bg-[#1e293b]/50 border border-[#334155] text-center">
+      <div 
+        className="p-6 rounded-xl border text-center"
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--color-surface-light) 50%, transparent)',
+          borderColor: 'var(--color-border)',
+        }}
+      >
         <div className="text-6xl mb-4">🚧</div>
-        <h2 className="text-xl font-bold text-white mb-2">Content Coming Soon</h2>
-        <p className="text-sm text-[#94a3b8]">
+        <h2 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text)' }}>Content Coming Soon</h2>
+        <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
           This section is under construction. Check back soon for comprehensive coverage of {title.toLowerCase()}.
         </p>
       </div>

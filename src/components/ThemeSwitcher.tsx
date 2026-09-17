@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useTheme } from '../context/ThemeContext';
 import { themes, themesByCategory } from '../config/themes';
 import { Palette, X, Check } from 'lucide-react';
@@ -6,10 +7,61 @@ import { Palette, X, Check } from 'lucide-react';
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // Focus trap and keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+      
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    
+    // Lock background scroll
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    
+    // Focus the modal
+    setTimeout(() => {
+      modalRef.current?.focus();
+    }, 0);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
 
   return (
     <>
       <button
+        ref={triggerRef}
         onClick={() => setIsOpen(true)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
         style={{
@@ -23,6 +75,7 @@ export default function ThemeSwitcher() {
           e.currentTarget.style.borderColor = theme.colors.border;
         }}
         aria-label="Change theme"
+        aria-haspopup="dialog"
       >
         <Palette className="w-4 h-4" style={{ color: theme.colors.primary }} />
         <span className="text-sm font-medium hidden sm:inline" style={{ color: theme.colors.text }}>
@@ -30,19 +83,25 @@ export default function ThemeSwitcher() {
         </span>
       </button>
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-          onClick={() => setIsOpen(false)}
-        >
+      {isOpen && typeof document !== 'undefined' && createPortal(
+        <>
           <div
-            className="w-full max-w-3xl max-h-[90vh] mx-4 rounded-2xl border overflow-hidden flex flex-col shadow-2xl"
-            style={{
-              backgroundColor: theme.colors.surface,
-              borderColor: theme.colors.border,
-            }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+            role="presentation"
           >
+            <div
+              ref={modalRef}
+              className="w-full max-w-3xl max-h-[90vh] mx-4 rounded-2xl border overflow-hidden flex flex-col shadow-2xl"
+              style={{
+                backgroundColor: theme.colors.surface,
+                borderColor: theme.colors.border,
+              }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="theme-modal-title"
+            >
             <div
               className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0"
               style={{ borderColor: theme.colors.border }}
@@ -55,7 +114,7 @@ export default function ThemeSwitcher() {
                   <Palette className="w-5 h-5" style={{ color: theme.colors.primary }} />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold leading-tight" style={{ color: theme.colors.text }}>
+                  <h2 id="theme-modal-title" className="text-lg font-bold leading-tight" style={{ color: theme.colors.text }}>
                     Choose Your Theme
                   </h2>
                   <p className="text-xs" style={{ color: theme.colors.textMuted }}>
@@ -209,6 +268,8 @@ export default function ThemeSwitcher() {
             </div>
           </div>
         </div>
+        </>,
+        document.body
       )}
     </>
   );

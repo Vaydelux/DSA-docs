@@ -63,7 +63,7 @@ export default function CodeBlock({ code, language, title }: CodeBlockProps) {
             <pre className="code-block p-4 m-0 bg-transparent" style={{ ...style, background: 'transparent' }}>
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line })} className="table-row">
-                  <span className="table-cell text-right pr-4 select-none text-[#4a5568] text-xs w-8">{i + 1}</span>
+                  <span className="table-cell text-right pr-4 select-none text-xs w-8" style={{ color: 'var(--color-text-dim)' }}>{i + 1}</span>
                   <span className="table-cell">
                     {line.map((token, key) => <span key={key} {...getTokenProps({ token })} />)}
                   </span>
