@@ -63,4 +63,22 @@ function applyThemeToDocument(theme: Theme) {
   root.style.setProperty('--color-info', theme.colors.info);
   root.style.setProperty('--color-code-background', theme.colors.codeBackground);
   root.style.setProperty('--color-code-border', theme.colors.codeBorder);
+  // Foreground tokens
+  root.style.setProperty('--color-text-on-primary', theme.colors.textOnPrimary);
+  root.style.setProperty('--color-text-on-success', theme.colors.textOnSuccess);
+  root.style.setProperty('--color-text-on-warning', theme.colors.textOnWarning);
+  root.style.setProperty('--color-text-on-error', theme.colors.textOnError);
+  root.style.setProperty('--color-text-on-info', theme.colors.textOnInfo);
+  // Set color scheme based on surface brightness
+  const isDark = isColorDark(theme.colors.surface);
+  root.style.colorScheme = isDark ? 'dark' : 'light';
+}
+
+function isColorDark(color: string): boolean {
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness < 128;
 }

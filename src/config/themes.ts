@@ -21,11 +21,15 @@ export interface Theme {
     info: string;
     codeBackground: string;
     codeBorder: string;
+    textOnPrimary: string;
+    textOnSuccess: string;
+    textOnWarning: string;
+    textOnError: string;
+    textOnInfo: string;
   };
 }
 
 export const themes: Theme[] = [
-  // Deep Space
   {
     id: 'nebula-eclipse',
     name: 'Nebula Eclipse',
@@ -49,6 +53,11 @@ export const themes: Theme[] = [
       info: '#3b82f6',
       codeBackground: '#0f172a',
       codeBorder: '#1e293b',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -74,6 +83,11 @@ export const themes: Theme[] = [
       info: '#58a6ff',
       codeBackground: '#0d1117',
       codeBorder: '#21262d',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -99,6 +113,11 @@ export const themes: Theme[] = [
       info: '#70a1ff',
       codeBackground: '#0f0f1e',
       codeBorder: '#1a1a2e',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -124,6 +143,11 @@ export const themes: Theme[] = [
       info: '#118ab2',
       codeBackground: '#001233',
       codeBorder: '#001845',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -149,9 +173,13 @@ export const themes: Theme[] = [
       info: '#3a86ff',
       codeBackground: '#0b0c10',
       codeBorder: '#1f2833',
+      textOnPrimary: '#000000',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
-  // Ice & Frost
   {
     id: 'glacier-frost',
     name: 'Glacier Frost',
@@ -175,6 +203,11 @@ export const themes: Theme[] = [
       info: '#2962ff',
       codeBackground: '#f5f5f5',
       codeBorder: '#e0e0e0',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -200,9 +233,13 @@ export const themes: Theme[] = [
       info: '#17a2b8',
       codeBackground: '#ffffff',
       codeBorder: '#e9ecef',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
-  // Metal & Tech
   {
     id: 'cyber-slate',
     name: 'Cyber Slate',
@@ -226,6 +263,11 @@ export const themes: Theme[] = [
       info: '#00d4ff',
       codeBackground: '#0d1117',
       codeBorder: '#1a1a2e',
+      textOnPrimary: '#000000',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#000000',
     },
   },
   {
@@ -251,6 +293,11 @@ export const themes: Theme[] = [
       info: '#0984e3',
       codeBackground: '#2d3436',
       codeBorder: '#353b48',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -276,9 +323,13 @@ export const themes: Theme[] = [
       info: '#9cdcfe',
       codeBackground: '#1e1e1e',
       codeBorder: '#252526',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#000000',
     },
   },
-  // Neon & Synth
   {
     id: 'plasma-magenta',
     name: 'Plasma Magenta',
@@ -302,6 +353,11 @@ export const themes: Theme[] = [
       info: '#8338ec',
       codeBackground: '#0f0f23',
       codeBorder: '#1a1a3a',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -327,6 +383,11 @@ export const themes: Theme[] = [
       info: '#05d9e8',
       codeBackground: '#2b1055',
       codeBorder: '#3c1361',
+      textOnPrimary: '#000000',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#000000',
     },
   },
   {
@@ -352,6 +413,11 @@ export const themes: Theme[] = [
       info: '#00ccff',
       codeBackground: '#1a0033',
       codeBorder: '#2d004d',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#000000',
     },
   },
   {
@@ -377,9 +443,13 @@ export const themes: Theme[] = [
       info: '#00ffff',
       codeBackground: '#0a1f0a',
       codeBorder: '#0f2f0f',
+      textOnPrimary: '#000000',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#000000',
     },
   },
-  // Terminal & Matrix
   {
     id: 'matrix-terminal',
     name: 'Matrix Terminal',
@@ -403,9 +473,13 @@ export const themes: Theme[] = [
       info: '#00ffff',
       codeBackground: '#000000',
       codeBorder: '#003300',
+      textOnPrimary: '#000000',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#000000',
     },
   },
-  // Fire & Earth
   {
     id: 'magma-ash',
     name: 'Magma Ash',
@@ -429,6 +503,11 @@ export const themes: Theme[] = [
       info: '#3a86ff',
       codeBackground: '#1a1a1a',
       codeBorder: '#2d2d2d',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -454,6 +533,11 @@ export const themes: Theme[] = [
       info: '#00b0ff',
       codeBackground: '#1a0a0a',
       codeBorder: '#2d0f0f',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -479,6 +563,11 @@ export const themes: Theme[] = [
       info: '#0277bd',
       codeBackground: '#fff8e1',
       codeBorder: '#ffecb3',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -504,6 +593,11 @@ export const themes: Theme[] = [
       info: '#4682b4',
       codeBackground: '#2d1810',
       codeBorder: '#3d2418',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#ffffff',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
   {
@@ -529,6 +623,11 @@ export const themes: Theme[] = [
       info: '#1e90ff',
       codeBackground: '#1c1c1c',
       codeBorder: '#2a2a2a',
+      textOnPrimary: '#ffffff',
+      textOnSuccess: '#000000',
+      textOnWarning: '#000000',
+      textOnError: '#ffffff',
+      textOnInfo: '#ffffff',
     },
   },
 ];
