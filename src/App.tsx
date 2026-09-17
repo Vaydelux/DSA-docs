@@ -52,15 +52,19 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen min-h-[100dvh] overflow-x-hidden" style={{ backgroundColor: 'var(--color-surface)' }}>
+      <div className="app-layout" style={{ backgroundColor: 'var(--color-surface)' }}>
+        <div 
+          className={`sidebar-overlay ${sidebarOpen ? 'visible' : ''}`}
+          onClick={() => setSidebarOpen(false)}
+        />
         <Sidebar
           currentPage={currentPage}
           onNavigate={navigate}
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
         />
-        <main className="lg:ml-[280px] min-h-screen flex flex-col">
-          <header className="sticky top-0 z-30 backdrop-blur-md border-b" style={{ backgroundColor: 'color-mix(in srgb, var(--color-surface) 90%, transparent)', borderBottomColor: 'var(--color-border)' }}>
+        <main className="main-content">
+          <header className="app-header">
             <div className="flex items-center justify-between px-4 md:px-8 py-3">
               <div className="flex items-center gap-3">
                 <button
@@ -95,7 +99,7 @@ export default function App() {
               </div>
             </div>
           </header>
-          <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-8 max-w-4xl mx-auto w-full">
+          <div className="content-wrapper">
             <PageComponent />
             <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t" style={{ borderColor: 'var(--color-border)' }}>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
